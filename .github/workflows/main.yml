@@ -12,34 +12,20 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  Deploy:
-    # The type of runner that the job will run on
+  deploy_job:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    name: deploy
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-      
-  - name: ftp-action
-    # You may pin to the exact commit or the version.
-    # uses: sebastianpopp/ftp-action@eb75c5cb29d23ee4a729720a27dfb66403cb0f6d
-    uses: sebastianpopp/ftp-action@v2.0.0
-    with:
-      # FTP host
-      host: ${{ secrets.FTP_SERVER }}
-     # FTP user
-      user: ${{ secrets.FTP_USERNAME }}
-      # FTP password
-      password: ${{ secrets.FTP_PASSWORD }}
-      # Force SSL encryption
-      forceSsl: # optional, default is false
-     # Local directory
-     localDir: 
-     # Remote directory
-     remoteDir: "/traveller"
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: deploy file
+      uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      with:
+          username: ${{ secrets.FTP_USERNAME }}
+          server:  ${{ secrets.FTP_SERVER }}
+          ssh_private_key: ${{ secrets.FTP_PASSWORD }}
+          local_path: "./TravellerSheetHandler"
+          remote_path: "/traveller"
+          sftpArgs: '-o ConnectTimeout=5'
 
