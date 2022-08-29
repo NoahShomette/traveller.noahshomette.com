@@ -29,5 +29,5 @@ jobs:
           remote_path: "/traveller"
           port: 2222
           sftpArgs: '-o ConnectTimeout=5'
-          sftp_onlu: true
+          sftp_only: true
 
