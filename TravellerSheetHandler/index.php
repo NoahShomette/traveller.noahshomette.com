@@ -9,6 +9,7 @@ include_once "includes/sheetDB.php";
     <title>Traveller Sheets </title>
     </head>
 <body>
+    <h1>Traveller Character Sheet</h1>
 <?php
 $object = new travellerSheetDatabase;
 $object->connect();
