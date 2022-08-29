@@ -27,5 +27,6 @@ jobs:
           ssh_private_key: ${{ secrets.FTP_PASSWORD }}
           local_path: "./TravellerSheetHandler"
           remote_path: "/traveller"
+          port: 2222
           sftpArgs: '-o ConnectTimeout=5'
 
