@@ -24,9 +24,10 @@ jobs:
       with:
           username: ${{ secrets.FTP_USERNAME }}
           server:  ${{ secrets.FTP_SERVER }}
-          ssh_private_key: ${{ secrets.FTP_PASSWORD }}
+          password: ${{ secrets.FTP_PASSWORD }}
           local_path: "./TravellerSheetHandler"
           remote_path: "/traveller"
           port: 2222
           sftpArgs: '-o ConnectTimeout=5'
+          sftp_onlu: true
 
